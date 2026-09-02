@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Google AI Blocker</title>
+  <link rel="stylesheet" href="../shared/ui.css">
+  <style>
+    body { width: 320px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="../../icons/icon48.png" alt="">
+    <h1>Google AI Blocker</h1>
+  </div>
+
+  <div class="content">
+    <div class="option">
+      <input type="checkbox" id="skipAiOverview">
+      <label for="skipAiOverview">
+        <span class="title">Never generate an AI Overview</span>
+        <span class="hint">Adds Google's "Web" filter (&amp;udm=14) to searches, so the
+          overview is never produced. Results become plain links only.</span>
+      </label>
+    </div>
+
+    <div class="option">
+      <input type="checkbox" id="removeAiOverview">
+      <label for="removeAiOverview">
+        <span class="title">Remove any AI Overview on the page</span>
+        <span class="hint">Fallback for searches that still return one.</span>
+      </label>
+    </div>
+
+    <div class="option">
+      <input type="checkbox" id="hideAiModeTab">
+      <label for="hideAiModeTab">
+        <span class="title">Hide the "AI Mode" tab</span>
+        <span class="hint">Removes the AI Mode entry from the results tab bar.</span>
+      </label>
+    </div>
+
+    <div class="option">
+      <input type="checkbox" id="showBadge">
+      <label for="showBadge">
+        <span class="title">Show a count on the toolbar icon</span>
+      </label>
+    </div>
+
+    <div class="stats">
+      <strong id="blockedTotal">0</strong> AI Overviews removed since install.
+    </div>
+
+    <div class="actions">
+      <a class="linkbutton" id="openOptions" href="#">More settings</a>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <script src="../shared/defaults.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

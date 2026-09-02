@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test - Google Search</title>
+</head>
+<body>
+  <div id="searchform">
+    <div role="list" id="tabs">
+      <div role="listitem" id="tab-web"><a href="/search?q=test&amp;udm=14">Web</a></div>
+      <div role="listitem" id="tab-ai-mode"><a href="/search?q=test&amp;udm=50">AI Mode</a></div>
+      <div role="listitem" id="tab-images"><a href="/search?q=test&amp;udm=2">Images</a></div>
+    </div>
+  </div>
+
+  <div id="rcnt">
+    <div id="center_col">
+      <div id="search">
+        <div id="rso">
+          <!-- 1: matched by the structural attribute hook -->
+          <div id="aio-attr" class="MjjYud">
+            <div data-subtree="aio">
+              <div role="heading" aria-level="2">AI Overview</div>
+              <p>Generated summary text.</p>
+            </div>
+          </div>
+
+          <!-- 2: matched by a localised heading only -->
+          <div id="aio-label" class="MjjYud">
+            <div class="wrapper">
+              <div role="heading" aria-level="2">AI-overzicht</div>
+              <p>Gegenereerde samenvatting.</p>
+            </div>
+          </div>
+
+          <!-- 3: matched by aria-label only -->
+          <div id="aio-aria" class="MjjYud">
+            <div aria-label="AI Overview">
+              <p>Another generated summary.</p>
+            </div>
+          </div>
+
+          <!-- Ordinary results, which must survive -->
+          <div id="result-1" class="MjjYud">
+            <a href="https://example.com/">Example result</a>
+            <p>A snippet that merely mentions an AI overview of the topic in prose.</p>
+          </div>
+          <div id="result-2" class="MjjYud">
+            <a href="https://example.org/">Another result</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Google streams the overview in after first paint; make sure the observer
+    // catches a block that appears late.
+    setTimeout(function () {
+      var late = document.createElement('div');
+      late.id = 'aio-late';
+      late.className = 'MjjYud';
+      late.innerHTML =
+        '<div data-subtree="aio"><div role="heading">AI Overview</div>' +
+        '<p>Late generated summary.</p></div>';
+      document.getElementById('rso').prepend(late);
+      document.documentElement.setAttribute('data-late-injected', 'true');
+    }, 300);
+  </script>
+</body>
+</html>

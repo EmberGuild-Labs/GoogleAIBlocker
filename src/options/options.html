@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Google AI Blocker options</title>
+  <link rel="stylesheet" href="../shared/ui.css">
+  <style>
+    body { max-width: 620px; margin: 0 auto; }
+    section { padding: 16px 0; border-bottom: 1px solid var(--line); }
+    section:last-of-type { border-bottom: none; }
+    p.hint { color: var(--muted); font-size: 12px; margin: 0 0 8px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="../../icons/icon48.png" alt="">
+    <h1>Google AI Blocker</h1>
+  </div>
+
+  <div class="content">
+    <section>
+      <h2>Blocking</h2>
+      <div class="option">
+        <input type="checkbox" id="skipAiOverview">
+        <label for="skipAiOverview">
+          <span class="title">Never generate an AI Overview</span>
+          <span class="hint">Rewrites <code>google.com/search?q=...</code> to
+            <code>&amp;udm=14</code>, Google's "Web" results filter, which returns plain
+            links and no AI Overview. Nothing is generated, so nothing has to be
+            hidden. Image, News, Video and Shopping tabs keep working; the "All"
+            tab becomes "Web".</span>
+        </label>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="removeAiOverview">
+        <label for="removeAiOverview">
+          <span class="title">Remove any AI Overview on the page</span>
+          <span class="hint">Deletes the overview from the results page if one appears
+            anyway. Leave this on even with the option above enabled.</span>
+        </label>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="hideAiModeTab">
+        <label for="hideAiModeTab">
+          <span class="title">Hide the "AI Mode" tab</span>
+          <span class="hint">Removes links to <code>udm=50</code> from the tab bar.</span>
+        </label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Extra selectors</h2>
+      <p class="hint">One CSS selector per line. Anything matching is removed from the
+        results page along with its result card. Useful if Google ships a new layout
+        before the extension is updated.</p>
+      <textarea id="customSelectors" spellcheck="false"
+        placeholder="div[data-example-attribute]"></textarea>
+      <div class="actions">
+        <button class="primary" id="save">Save selectors</button>
+        <span class="status" id="status"></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Diagnostics</h2>
+      <div class="option">
+        <input type="checkbox" id="showBadge">
+        <label for="showBadge">
+          <span class="title">Show a count on the toolbar icon</span>
+        </label>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="debug">
+        <label for="debug">
+          <span class="title">Log matches to the page console</span>
+          <span class="hint">Prints every element the extension removes, prefixed with
+            <code>[GoogleAIBlocker]</code>.</span>
+        </label>
+      </div>
+      <div class="stats">
+        <strong id="blockedTotal">0</strong> AI Overviews removed since install.
+      </div>
+      <div class="actions">
+        <button id="resetStats">Reset counter</button>
+        <button id="resetSettings">Restore defaults</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="../shared/defaults.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

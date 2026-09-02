@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Written by Chrome when the extension is loaded unpacked
+_metadata/

@@ -1,0 +1,19 @@
+{
+  "name": "google-ai-blocker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension that stops Google's AI Overview from being generated, and removes it if it appears anyway.",
+  "license": "MIT",
+  "scripts": {
+    "build:manifest": "node tools/build-manifest.mjs",
+    "check:manifest": "node tools/build-manifest.mjs --check",
+    "build:icons": "python3 tools/make-icons.py",
+    "package": "bash tools/package.sh",
+    "test": "npm run test:rules && npm run test:e2e",
+    "test:rules": "node test/rules.test.mjs",
+    "test:e2e": "node test/e2e.test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}

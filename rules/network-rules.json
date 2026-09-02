@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "transform": {
+          "queryTransform": {
+            "addOrReplaceParams": [{ "key": "udm", "value": "14" }]
+          }
+        }
+      }
+    },
+    "condition": {
+      "regexFilter": "^https?://(www\\.)?google\\.[a-z.]{2,7}/search\\?([^#]*&)?q=",
+      "resourceTypes": ["main_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 2,
+    "action": { "type": "allow" },
+    "condition": {
+      "regexFilter": "^https?://(www\\.)?google\\.[a-z.]{2,7}/search\\?([^#]*&)?(udm|tbm)=",
+      "resourceTypes": ["main_frame"]
+    }
+  }
+]
